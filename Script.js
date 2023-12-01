@@ -41,7 +41,9 @@ function showHealthyPets() {
     return;
   }
   // Tìm các pets không đạt chỉ  tiêu
-  const unhealthyPets = petList.filter(pet => !pet.vaccinated || !pet.dewormed || !pet.sterilized);
+  const unhealthyPets = petList.filter(
+    pet => !pet.vaccinated || !pet.dewormed || !pet.sterilized
+  );
   // Ẩn các pets không đạt chỉ tiêu
   unhealthyPets.forEach(pet => {
     const row = tableBodyElement.querySelector(`[id="${pet.id}"]`);
@@ -63,8 +65,8 @@ function showAllPets() {
   healthyButtonElement.style.display = 'inline-block';
 }
 
-const dogBMI = 703;
-const catBMI = 886;
+const DOG_BMI = 703;
+const CAT_BMI = 886;
 
 // 9. (Nâng cao) Tính toán chỉ số BMI
 function calculateBMI() {
@@ -77,9 +79,9 @@ function calculateBMI() {
     const tableDataElement = tableBodyElement.querySelector(`[id="bmi-${pet.id}"]`);
     let bodyMassIndex = 0;
     if (pet.type === 'Dog') {
-      bodyMassIndex = dogBMI;
+      bodyMassIndex = DOG_BMI;
     } else {
-      bodyMassIndex = catBMI;
+      bodyMassIndex = CAT_BMI;
     }
     pet.bmi = ((pet.weight * bodyMassIndex) / pet.length ** 2).toFixed(2)
     tableDataElement.innerHTML = pet.bmi;
@@ -164,7 +166,9 @@ function renderRow(pet) {
   }
 
   // Gán hàm xóa dòng cho sự kiện click của nút xóa
-  buttonElement.onclick = () => { deletePet(pet.id); };
+  buttonElement.onclick = () => { 
+    deletePet(pet.id); 
+  };
   const tableDataElement = createElement('td');
   tableDataElement.appendChild(buttonElement);
   tableRowElement.innerHTML = tableData;
@@ -199,7 +203,9 @@ function onSubmit() {
       alert('Age must be between 1 and 15!');
       return;
     }
-    const weightInputElementValue = getElementById(inputElementsId.weight).value;
+    const weightInputElementValue = getElementById(
+      inputElementsId.weight
+    ).value;
     if (!weightInputElementValue && weightInputElementValue !== 0) {
       alert('Enter weight!');
       return;
@@ -208,7 +214,9 @@ function onSubmit() {
       alert('Weight must be between 1 and 15!');
       return;
     }
-    const lengthInputElementValue = getElementById(inputElementsId.length).value;
+    const lengthInputElementValue = getElementById(
+      inputElementsId.length
+    ).value;
     if (!lengthInputElementValue && lengthInputElementValue !== 0) {
       alert('Enter length!');
       return;
@@ -233,7 +241,8 @@ function onSubmit() {
   const pet = {};
   Object.entries(inputElementsId).forEach(([key, inputElementId]) => {
     const inputElement = getElementById(inputElementId);
-    pet[key] = inputElement.type === 'checkbox' ? inputElement.checked : inputElement.value;
+    pet[key] = 
+    inputElement.type === 'checkbox' ? inputElement.checked : inputElement.value;
   });
   if (pet.vaccinated && pet.dewormed && pet.sterilized) pet.isHealthy = true;
   // 4. Thêm thú cưng vào danh sách
@@ -265,27 +274,32 @@ function renderListPetBreeds() {
 
   if (typeInputElement.value === 'Dog') {
     // nếu type là Dog thì chỉ hiện thị các giống thuộc type là Dog
-    breeds.filter(b => b.type === 'Dog').forEach(b => {
-      breedInnerHTML +=
-        `
-          <option value="${b.name}">${b.name}</option>
-        `;
+    breeds
+      .filter(b => b.type === 'Dog')
+      .forEach(b => {
+        breedInnerHTML +=
+          `
+            <option value="${b.name}">${b.name}</option>
+          `;
     });
 
   } else if (typeInputElement.value === 'Cat') {
     // nếu type là Cat thì chỉ hiện thị các giống thuộc type là Cat
-    breeds.filter(b => b.type === 'Cat').forEach(b => {
-      breedInnerHTML +=
-        `
-          <option value="${b.name}">${b.name}</option>
-        `;
+    breeds
+      .filter(b => b.type === 'Cat')
+      .forEach(b => {
+        breedInnerHTML +=
+          `
+            <option value="${b.name}">${b.name}</option>
+          `;
     });
   } else {
-    breeds.forEach(b => {
-      breedInnerHTML +=
-        `
-          <option value="${b.name}">${b.name}</option>
-        `;
+    breeds
+      .forEach(b => {
+        breedInnerHTML +=
+          `
+            <option value="${b.name}">${b.name}</option>
+          `;
     });
   }
   const breedInputElement = getElementById(inputElementsId.breed);
