@@ -73,15 +73,15 @@ function calculateBMI() {
   }
   petList.forEach(pet => {
     // Tìm các thẻ td có id = ("bmi-" + "id của pet"), sau đó tính toán và gán giá trị vào thẻ td
-      const tableDataElement=tableBodyElement.querySelector(`[id="bmi-${pet.id}"]`);
-      let bodyMassIndex=0;
-    if (pet.type==='Dog') {
-      bodyMassIndex=dogBMI;
+      const tableDataElement = tableBodyElement.querySelector(`[id="bmi-${pet.id}"]`);
+      let bodyMassIndex = 0;
+    if (pet.type === 'Dog') {
+      bodyMassIndex = dogBMI;
     } else {
-      bodyMassIndex=catBMI;
+      bodyMassIndex = catBMI;
     }
-    pet.bmi=((pet.weight * bodyMassIndex) / pet.length ** 2).toFixed(2)
-    tableDataElement.innerHTML =pet.bmi;
+    pet.bmi = ((pet.weight * bodyMassIndex) / pet.length ** 2).toFixed(2)
+    tableDataElement.innerHTML = pet.bmi;
   });
 }
 
