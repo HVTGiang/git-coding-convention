@@ -24,9 +24,9 @@ const inputElementsId = {
 }
 
 // DOM của các button
-const healthyButtonElement = getElementById('healthy-btn')
-const showAllButtonElement = getElementById('show-all-btn')
-const calculateBMIButtonElement = getElementById('calculate-BMI-btn')
+const healthyButtonElement = getElementById('healthy-btn');
+const showAllButtonElement = getElementById('show-all-btn');
+const calculateBMIButtonElement = getElementById('calculate-BMI-btn');
 let isShowingHealthyPets = false;
 
 // Gán sự kiện click cho các button
