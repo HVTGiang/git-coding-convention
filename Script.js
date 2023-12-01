@@ -2,7 +2,7 @@
 
 const getElementById = (id) => document.getElementById(id);
 const createElement = (tagName) => document.createElement(tagName);
-const tableBodyEl = getElementById('tbody');
+const tableBodyElement = getElementById('tbody');
 const inputElement = document.createElement('input');
 
 // Tạo một biến global tên là petList là một mảng lưu danh sách thú cưng.
@@ -29,12 +29,12 @@ const calculateBMIButtonElement = getElementById('calculate-BMI-btn')
 let isShowingHealthyPets = false;
 
 // Gán sự kiện click cho các button
-healthyButtonElement.onclick = ShowHealthyPets;
-showAllButtonElement.onclick = ShowAllPets;
+healthyButtonElement.onclick = showHealthyPets;
+showAllButtonElement.onclick = showAllPets;
 calculateBMIButtonElement.onclick = calculateBMI;
 
 // 8. Hiển thị các thú cưng khỏe mạnh
-function ShowHealthyPets() {
+function showHealthyPets() {
   if (!petList.length) {
     alert('there was no pet added!');
     return;
@@ -43,7 +43,7 @@ function ShowHealthyPets() {
   const unhealthyPets = petList.filter(pet => !pet.vaccinated || !pet.dewormed || !pet.sterilized);
   // Ẩn các pets không đạt chỉ tiêu
   unhealthyPets.forEach(pet => {
-    const row = tableBodyEl.querySelector(`[id="${pet.id}"]`);
+    const row = tableBodyElement.querySelector(`[id="${pet.id}"]`);
     row.style.display = 'none';
   });
   healthyButtonElement.style.display = 'none';
@@ -52,12 +52,12 @@ function ShowHealthyPets() {
 }
 
 // Hiện tất cả các pets
-function ShowAllPets() {
+function showAllPets() {
   if (!petList.length) {
     alert('there was no pet added!');
     return;
   }
-  tableBodyEl.querySelectorAll('tr').forEach(row => row.style.display = 'table-row');
+  tableBodyElement.querySelectorAll('tr').forEach(row => row.style.display = 'table-row');
   showAllButtonElement.style.display = 'none';
   healthyButtonElement.style.display = 'inline-block';
 }
@@ -73,7 +73,7 @@ function calculateBMI() {
   }
   petList.forEach(pet => {
     // Tìm các thẻ td có id = ("bmi-" + "id của pet"), sau đó tính toán và gán giá trị vào thẻ td
-      const tableDataElement=tableBodyEl.querySelector(`[id="bmi-${pet.id}"]`);
+      const tableDataElement=tableBodyElement.querySelector(`[id="bmi-${pet.id}"]`);
       let bodyMassIndex=0;
     if (pet.type==='Dog') {
       bodyMassIndex=dogBMI;
@@ -150,7 +150,7 @@ function renderRow(pet) {
 
   // Xóa dòng
   function removeRow(petId) {
-    const petRowElement = tableBodyEl.querySelector(`[id="${petId}"]`);
+    const petRowElement = tableBodyElement.querySelector(`[id="${petId}"]`);
     petRowElement.remove();
   }
   // 7. Xóa một thú cưng
@@ -168,7 +168,7 @@ function renderRow(pet) {
     tableDataElement.appendChild(buttonElement);
     tableRowElement.innerHTML = tableData;
     tableRowElement.appendChild(tableDataElement);
-    tableBodyEl.appendChild(tableRowElement)
+    tableBodyElement.appendChild(tableRowElement)
 }
 
 // 1. Bắt sự kiện Click vào nút "Submit"
@@ -249,7 +249,7 @@ function onSubmit() {
   // 6. Xóa các dữ liệu vừa nhập trên Form
   resetForm();
 
-  ShowAllPets();
+  showAllPets();
 
 }
 
