@@ -9,7 +9,8 @@ const inputElement = document.createElement('input');
 const petList = [];
 
 // Object chứa thuộc tính Id của các input
-const inputElementsId = { id: 'input-id',
+const inputElementsId = { 
+  id: 'input-id',
   name: 'input-name',
   age: 'input-age',
   type: 'input-type',
@@ -73,8 +74,8 @@ function calculateBMI() {
   }
   petList.forEach(pet => {
     // Tìm các thẻ td có id = ("bmi-" + "id của pet"), sau đó tính toán và gán giá trị vào thẻ td
-      const tableDataElement = tableBodyElement.querySelector(`[id="bmi-${pet.id}"]`);
-      let bodyMassIndex = 0;
+    const tableDataElement = tableBodyElement.querySelector(`[id="bmi-${pet.id}"]`);
+    let bodyMassIndex = 0;
     if (pet.type === 'Dog') {
       bodyMassIndex = dogBMI;
     } else {
@@ -87,10 +88,10 @@ function calculateBMI() {
 
 // Tạo các dòng cho table
 function renderRow(pet) {
-    const tableRowElement = createElement('tr');
-    tableRowElement.id = pet.id;
+  const tableRowElement = createElement('tr');
+  tableRowElement.id = pet.id;
 
-    let tableData = '';
+  let tableData = '';
   Object.entries(inputElementsId).forEach(([inputFieldName, inputId]) => {
     // Với mỗi giá trị inputId của input lấy từ object inputElementsId, get DOM của input
     const inputElement = getElementById(inputId);
@@ -135,18 +136,18 @@ function renderRow(pet) {
         ?
       </td>
     `;
-    const timeElapsed = Date.now();
-    const currentDate = new Date(timeElapsed);
+  const timeElapsed = Date.now();
+  const currentDate = new Date(timeElapsed);
   tableData +=
     `
       <td>
         ${currentDate.toLocaleDateString()}
       </td>
     `;
-    const buttonElement = createElement('button');
-    buttonElement.innerHTML = 'Delete';
-    buttonElement.className = 'btn btn-danger';
-    buttonElement.type = 'button';
+  const buttonElement = createElement('button');
+  buttonElement.innerHTML = 'Delete';
+  buttonElement.className = 'btn btn-danger';
+  buttonElement.type = 'button';
 
   // Xóa dòng
   function removeRow(petId) {
@@ -163,12 +164,12 @@ function renderRow(pet) {
   }
 
   // Gán hàm xóa dòng cho sự kiện click của nút xóa
-    buttonElement.onclick = () => { deletePet(pet.id); };
-    const tableDataElement = createElement('td');
-    tableDataElement.appendChild(buttonElement);
-    tableRowElement.innerHTML = tableData;
-    tableRowElement.appendChild(tableDataElement);
-    tableBodyElement.appendChild(tableRowElement)
+  buttonElement.onclick = () => { deletePet(pet.id); };
+  const tableDataElement = createElement('td');
+  tableDataElement.appendChild(buttonElement);
+  tableRowElement.innerHTML = tableData;
+  tableRowElement.appendChild(tableDataElement);
+  tableBodyElement.appendChild(tableRowElement)
 }
 
 // 1. Bắt sự kiện Click vào nút "Submit"
